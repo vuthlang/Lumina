@@ -52,6 +52,10 @@ public class Main extends Application {
     }*/
 
     public static void main(String[] args) {
+        Firebase firebase = new Firebase();
+        firebase.initialize();
+        firebase.fetchProduits();
+
         launch();
     }
     
