@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projet.ConnexionController">
+   <children>
+      <Pane layoutX="163.0" layoutY="100.0" prefHeight="300.0" prefWidth="375.0" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;">
+         <children>
+            <TextField fx:id="username" layoutX="101.0" layoutY="113.0" />
+            <Text layoutX="153.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sup2Marché" textAlignment="CENTER">
+               <font>
+                  <Font name="Noteworthy Light" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="152.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER">
+               <font>
+                  <Font name="Noto Sans Oriya" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="99.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" textAlignment="CENTER">
+               <font>
+                  <Font name="Noto Sans Oriya" size="13.0" />
+               </font>
+            </Text>
+            <Text layoutX="101.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom d'utilisateur" textAlignment="CENTER">
+               <font>
+                  <Font name="Noto Sans Oriya" size="13.0" />
+               </font>
+            </Text>
+            <Button fx:id="connect" layoutX="137.0" layoutY="243.0" mnemonicParsing="false" onAction="#connect" text="Se connecter" />
+            <PasswordField fx:id="password" layoutX="101.0" layoutY="197.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
