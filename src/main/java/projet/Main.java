@@ -16,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = Paths.get("src/main/resources/projet/connexion.fxml").toUri().toURL();
+        URL url = Paths.get("src/main/resources/projet/addProduit.fxml").toUri().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setTitle("Lumina");
@@ -45,7 +45,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         Firebase firebase = new Firebase();
         firebase.initialize();
-        firebase.fetchProduits();
+        // firebase.ajouterProduit(1, "Aiguilles", "2mm", 1.50, 10, "https://cdn0.rascol.com/146215/465x465/cable-pivotant-swivel-pour-aiguilles-knitpro-80-cm.webp");
 
         launch();
     }
