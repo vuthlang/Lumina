@@ -24,15 +24,15 @@
             <Text layoutX="150.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Produit" textAlignment="CENTER" wrappingWidth="200.0" />
             <Text layoutX="150.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="CENTER" wrappingWidth="200.0" />
             <Text layoutX="150.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantite" textAlignment="CENTER" wrappingWidth="200.0" />
-            <Button fx:id="ajouterProduit" layoutX="175.0" layoutY="379.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color: 79CEEB;" text="Ajouter le produit" />
+            <Button fx:id="ajouterProduit" layoutX="175.0" layoutY="379.0" mnemonicParsing="false" prefWidth="150.0" style="-fx-background-color:          #c3c4c4,         linear-gradient(#d6d6d6 50%, white 100%),         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);     -fx-background-radius: 30;     -fx-background-insets: 0,1,1;     -fx-text-fill: black;     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );" text="Ajouter le produit" />
             <TextArea fx:id="descriptionTextArea" layoutX="150.0" layoutY="220.0" prefHeight="81.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <Text layoutX="548.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager • Pauline" textAlignment="RIGHT" wrappingWidth="287.44811248779297">
+      <Text layoutX="548.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager" textAlignment="RIGHT" wrappingWidth="287.44811248779297">
          <font>
             <Font size="16.0" />
          </font></Text>
-      <Button layoutX="849.0" layoutY="15.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: white;">
+      <Button layoutX="849.0" layoutY="15.0" mnemonicParsing="false" onAction="#logOut" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0">
                <image>
@@ -41,6 +41,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button layoutX="25.0" layoutY="550.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: 79CEEB;" text="Retour" />
+      <Button layoutX="25.0" layoutY="550.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color:          #c3c4c4,         linear-gradient(#d6d6d6 50%, white 100%),         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);     -fx-background-radius: 30;     -fx-background-insets: 0,1,1;     -fx-text-fill: black;     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );" text="Retour" />
    </children>
 </AnchorPane>

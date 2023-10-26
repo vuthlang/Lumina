@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,24 +17,13 @@
       </ImageView>
       <Pane layoutX="260.0" layoutY="175.0" prefHeight="250.0" prefWidth="380.0" style="-fx-background-color: white; -fx-background-radius: 30 30 30 30;">
          <children>
-            <TextField fx:id="username" layoutX="102.5" layoutY="90.0" prefWidth="175.0" />
-            <Text layoutX="115.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER" wrappingWidth="150.0">
+            <Text layoutX="100.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chosissez un rôle" textAlignment="CENTER" wrappingWidth="180.0">
                <font>
                   <Font name="American Typewriter" size="20.0" />
                </font>
             </Text>
-            <Text layoutX="115.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" textAlignment="CENTER" wrappingWidth="150.0">
-               <font>
-                  <Font name="Noto Sans Oriya" size="13.0" />
-               </font>
-            </Text>
-            <Text layoutX="115.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom d'utilisateur" textAlignment="CENTER" wrappingWidth="150.0">
-               <font>
-                  <Font name="Noto Sans Oriya" size="13.0" />
-               </font>
-            </Text>
-            <Button fx:id="connect" layoutX="140.0" layoutY="200.0" mnemonicParsing="false" onAction="#connect" prefWidth="100.0" text="Se connecter" />
-            <PasswordField fx:id="password" layoutX="102.5" layoutY="155.0" prefWidth="175.0" />
+            <Button fx:id="manager" layoutX="125.0" layoutY="75.0" mnemonicParsing="false" onAction="#manager" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color:          #c3c4c4,         linear-gradient(#d6d6d6 50%, white 100%),         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);     -fx-background-radius: 30;     -fx-background-insets: 0,1,1;     -fx-text-fill: black;     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );" text="Manager" />
+            <Button fx:id="caissier" layoutX="125.0" layoutY="150.0" mnemonicParsing="false" onAction="#caissier" prefHeight="50.0" prefWidth="130.0" style="-fx-background-color:          #c3c4c4,         linear-gradient(#d6d6d6 50%, white 100%),         radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);     -fx-background-radius: 30;     -fx-background-insets: 0,1,1;     -fx-text-fill: black;     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );" text="Caissier" />
          </children>
       </Pane>
       <Text fill="WHITE" layoutX="662.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sup2Marché">

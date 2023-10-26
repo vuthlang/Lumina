@@ -24,19 +24,18 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
-public class ManagerController {
+public class CaissierController {
     @FXML
     private GridPane gridPane = new GridPane();
 
     @FXML
-    private Button addProductButton = new Button();
+    private Button logOut = new Button();
 
     @FXML
     private Text numero = new Text();
@@ -48,10 +47,6 @@ public class ManagerController {
     private Firebase firebase = new Firebase();
 
     public void initialize() {
-
-        addProductButton.setOnAction(event -> {
-            Main.redirection(addProductButton, "addProduit.fxml");
-        });
 
         loadProductsAndCategories("");
     }
@@ -152,9 +147,6 @@ public class ManagerController {
         String categorie = (categorieObject != null)
                 ? getNomCategorie(Integer.parseInt(categorieObject.toString()), categories)
                 : "";
-        // String categorie =
-        // getNomCategorie(Integer.parseInt(produit.get("id_categorie").toString()),
-        // categories);
         String nom_produit = (String) produit.get("nom_produit");
         String prix = produit.get("prix").toString() + "€";
         String descriptif = (String) produit.get("descriptif");
@@ -174,16 +166,16 @@ public class ManagerController {
         quantiteComboBox.getSelectionModel().select(0);
         quantiteComboBox.setStyle(style0);
 
-        Button addButton = new Button();
-        ImageView addImage = new ImageView(new Image("projet/add.png"));
-        addImage.setFitWidth(15);
-        addImage.setFitHeight(15);
-        addButton.setGraphic(addImage);
-        addButton.setOnAction(event -> ajouterStock(id, quantiteComboBox.getValue()));
+        Button trashButton = new Button();
+        ImageView trashImage = new ImageView(new Image("projet/trash.png"));
+        trashImage.setFitWidth(15);
+        trashImage.setFitHeight(15);
+        trashButton.setGraphic(trashImage);
+        trashButton.setOnAction(event -> supprimerStock(id, quantiteComboBox.getValue()));
         String style = "-fx-background-color: white; -fx-cursor: hand;";
-        addButton.setStyle(style);
+        trashButton.setStyle(style);
 
-        HBox hBox = new HBox(10, quantiteComboBox, addButton);
+        HBox hBox = new HBox(10, quantiteComboBox, trashButton);
         hBox.setAlignment(Pos.CENTER);
 
         StackPane stackPane = new StackPane(new Region(), hBox);
@@ -195,7 +187,7 @@ public class ManagerController {
 
     @FXML
     public void logOut() {
-        Main.redirection(addProductButton, "connexion.fxml");
+        Main.redirection(logOut, "connexion.fxml");
     }
 
     @FXML
@@ -212,9 +204,9 @@ public class ManagerController {
     public void numeroClick() {
         loadProductsAndCategories("id");
     }
-    
-    // TODO : Ajoute du stock
-    public void ajouterStock(int id, int quantite) {
+
+    // TODO : Supprime du stock
+    public void supprimerStock(int id, int quantite) {
         System.out.println(id + " " + quantite);
         // TODO : mettre à jour la page à la fin de la fonction
     }

@@ -16,7 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        URL url = Paths.get("src/main/resources/projet/addProduit.fxml").toUri().toURL();
+        URL url = Paths.get("src/main/resources/projet/connexion.fxml").toUri().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         stage.setTitle("Lumina");
