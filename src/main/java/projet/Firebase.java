@@ -1,5 +1,13 @@
 package projet;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -8,11 +16,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Firebase {
 
@@ -34,24 +37,6 @@ public class Firebase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void fetchProduits() {
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Produit");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Object value = dataSnapshot.getValue();
-                System.out.println("Data: \n" + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                System.err.println("Failed to read value from Firebase: " + error.getMessage());
-            }
-        });
     }
 
     public interface KeyCallback {
@@ -101,5 +86,60 @@ public class Firebase {
                 }
             }
         });
+    }
+
+    public CompletableFuture<List<HashMap<String, Object>>> fetchProduits() {
+        CompletableFuture<List<HashMap<String, Object>>> completableFuture = new CompletableFuture<>();
+    
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Produit");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<HashMap<String, Object>> produits = new ArrayList<>();
+                produits = (List<HashMap<String, Object>>) dataSnapshot.getValue();
+                completableFuture.complete(produits); // Complète le CompletableFuture avec les données
+            }
+    
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Échec de la lecture des données
+                System.err.println("Failed to read value from Firebase: " + error.getMessage());
+                completableFuture.completeExceptionally(error.toException());
+            }
+        });
+    
+        return completableFuture;
+    }
+
+    public CompletableFuture<List<HashMap<String, Object>>> fetchCategories() {
+        CompletableFuture<List<HashMap<String, Object>>> completableFuture = new CompletableFuture<>();
+    
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categorie");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+    
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<HashMap<String, Object>> categories = new ArrayList<>();
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    String id = childSnapshot.getKey();
+                    String nom_categorie = childSnapshot.child("nom_categorie").getValue(String.class);
+                    HashMap<String, Object> categorie = new HashMap<String, Object>();
+                    categorie.put("id", id);
+                    categorie.put("nom_categorie", nom_categorie);
+                    categories.add(categorie);
+                }
+                completableFuture.complete(categories);
+            }
+    
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Échec de la lecture des données
+                System.err.println("Failed to read value from Firebase: " + error.getMessage());
+                completableFuture.completeExceptionally(error.toException());
+            }
+        });
+    
+        return completableFuture;
     }
 }

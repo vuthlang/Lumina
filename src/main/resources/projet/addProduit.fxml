@@ -41,5 +41,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button layoutX="25.0" layoutY="550.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: 79CEEB;" text="Retour" />
    </children>
 </AnchorPane>
