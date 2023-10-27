@@ -44,7 +44,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prix" textAlignment="CENTER" wrappingWidth="80.0" GridPane.columnIndex="3" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prix (euros)" textAlignment="CENTER" wrappingWidth="80.0" GridPane.columnIndex="3" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité" textAlignment="CENTER" wrappingWidth="65.0" GridPane.columnIndex="5" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descriptif" textAlignment="CENTER" wrappingWidth="150.0" GridPane.columnIndex="4" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion du stock" textAlignment="CENTER" wrappingWidth="185.0" GridPane.columnIndex="6" />

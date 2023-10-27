@@ -148,7 +148,7 @@ public class CaissierController {
                 ? getNomCategorie(Integer.parseInt(categorieObject.toString()), categories)
                 : "";
         String nom_produit = (String) produit.get("nom_produit");
-        String prix = produit.get("prix").toString() + "€";
+        String prix = produit.get("prix").toString();
         String descriptif = (String) produit.get("descriptif");
         String quantite = produit.get("quantite").toString();
 
