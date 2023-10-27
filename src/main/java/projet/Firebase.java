@@ -20,17 +20,18 @@ import com.google.firebase.database.ValueEventListener;
 public class Firebase {
 
     private boolean isDataReady = false;
-    private int lastKey; 
+    private int lastKey;
 
     public void initialize() {
         try {
             // Charger le fichier JSON
-            FileInputStream serviceAccount = new FileInputStream("./lumina-85044-firebase-adminsdk-a1dkh-59391434d2.json");
+            FileInputStream serviceAccount = new FileInputStream(
+                    "./lumina-85044-firebase-adminsdk-a1dkh-59391434d2.json");
 
             // Initialiser les options de Firebase
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .setDatabaseUrl("https://lumina-85044-default-rtdb.europe-west1.firebasedatabase.app")                    
+                    .setDatabaseUrl("https://lumina-85044-default-rtdb.europe-west1.firebasedatabase.app")
                     .build();
             // Initialiser Firebase avec les options
             FirebaseApp.initializeApp(options);
@@ -64,7 +65,8 @@ public class Firebase {
         });
     }
 
-    public void ajouterProduit(int categorie, String produit, String descriptif, double prix, int quantite, String url) {
+    public void ajouterProduit(int categorie, String produit, String descriptif, double prix, int quantite,
+            String url) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Produit");
 
@@ -73,14 +75,14 @@ public class Firebase {
             public void onKeyReceived(int key) {
                 if (isDataReady) {
                     Map<String, Object> produitMap = new HashMap<>();
-                    produitMap.put("id", key+1);
+                    produitMap.put("id", key + 1);
                     produitMap.put("id_categorie", categorie);
                     produitMap.put("nom_produit", produit);
                     produitMap.put("descriptif", descriptif);
                     produitMap.put("prix", prix);
                     produitMap.put("quantite", quantite);
                     produitMap.put("url_image", url);
-                    ref.child(String.valueOf(key+1)).setValueAsync(produitMap);
+                    ref.child(String.valueOf(key + 1)).setValueAsync(produitMap);
                 } else {
                     System.out.println("Data non disponible");
                 }
@@ -90,17 +92,17 @@ public class Firebase {
 
     public CompletableFuture<List<HashMap<String, Object>>> fetchProduits() {
         CompletableFuture<List<HashMap<String, Object>>> completableFuture = new CompletableFuture<>();
-    
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Produit");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
-    
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<HashMap<String, Object>> produits = new ArrayList<>();
                 produits = (List<HashMap<String, Object>>) dataSnapshot.getValue();
                 completableFuture.complete(produits); // Complète le CompletableFuture avec les données
             }
-    
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Échec de la lecture des données
@@ -108,16 +110,16 @@ public class Firebase {
                 completableFuture.completeExceptionally(error.toException());
             }
         });
-    
+
         return completableFuture;
     }
 
     public CompletableFuture<List<HashMap<String, Object>>> fetchCategories() {
         CompletableFuture<List<HashMap<String, Object>>> completableFuture = new CompletableFuture<>();
-    
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categorie");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
-    
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<HashMap<String, Object>> categories = new ArrayList<>();
@@ -131,7 +133,7 @@ public class Firebase {
                 }
                 completableFuture.complete(categories);
             }
-    
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Échec de la lecture des données
@@ -139,7 +141,42 @@ public class Firebase {
                 completableFuture.completeExceptionally(error.toException());
             }
         });
-    
+
         return completableFuture;
+    }
+
+    public void ajouterAuStock(String produitId, int quantiteAjoutee) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Produit").child(produitId)
+                .child("quantite");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    int quantiteActuelle = dataSnapshot.getValue(Integer.class);
+                    int nouvelleQuantite = quantiteActuelle + quantiteAjoutee;
+
+                    ref.setValue(Integer.valueOf(nouvelleQuantite), new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError != null) {
+                                System.out.println(
+                                        "Erreur lors de la mise à jour du stock: " + databaseError.getMessage());
+                            } else {
+                                System.out.println(
+                                        "Stock mis à jour avec succès. Nouvelle quantité: " + nouvelleQuantite);
+                            }
+                        }
+                    });
+                } else {
+                    System.out.println("Produit non trouvé.");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("Erreur lors de la lecture de la base de données: " + databaseError.getMessage());
+            }
+        });
     }
 }
