@@ -45,7 +45,7 @@ public class Firebase {
 
     public void getKey(final KeyCallback callback) {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("ProduitTest");
+        DatabaseReference ref = database.getReference("Produit");
 
         ref.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -66,7 +66,7 @@ public class Firebase {
 
     public void ajouterProduit(int categorie, String produit, String descriptif, double prix, int quantite, String url) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("ProduitTest");
+        DatabaseReference ref = database.getReference("Produit");
 
         getKey(new KeyCallback() {
             @Override
