@@ -212,11 +212,10 @@ public class ManagerController {
     public void numeroClick() {
         loadProductsAndCategories("id");
     }
-    
-    // TODO : Ajoute du stock
+
     public void ajouterStock(int id, int quantite) {
-        System.out.println(id + " " + quantite);
-        // TODO : mettre à jour la page à la fin de la fonction
+        firebase.ajouterAuStock(Integer.toString(id), quantite);
+        loadProductsAndCategories("");
     }
 
 }

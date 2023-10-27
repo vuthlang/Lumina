@@ -205,10 +205,11 @@ public class CaissierController {
         loadProductsAndCategories("id");
     }
 
-    // TODO : Supprime du stock
     public void supprimerStock(int id, int quantite) {
-        System.out.println(id + " " + quantite);
-        // TODO : mettre à jour la page à la fin de la fonction
+        quantite = - quantite;
+        firebase.ajouterAuStock(Integer.toString(id), quantite);
+        loadProductsAndCategories("");
     }
+
 
 }
