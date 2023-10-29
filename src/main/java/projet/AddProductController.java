@@ -104,6 +104,11 @@ public class AddProductController {
         Main.redirection(ajouterProduit, "connexion.fxml");
     }
 
+    @FXML
+    public void retour() {
+        Main.redirection(ajouterProduit, "manager.fxml");
+    }
+
     public void ajouterProduit(int categorie, String nom, String url, String description, double prix, int quantite) {
         Firebase produit = new Firebase();
         produit.ajouterProduit(categorie, nom, description, prix, quantite, url);
